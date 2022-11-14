@@ -1,1 +1,3 @@
-# Content coming next lesson. 
+## Web App that gets data from Pokedex API...
+
+and displays in a variety of useful ways.
