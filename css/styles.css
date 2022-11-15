@@ -1,0 +1,17 @@
+:root {
+  --primary-color: #fff;
+  --bg-color: #2b2b2b;
+  --span: #ff5217;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  text-align: center;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+span {
+  color: var(--span);
+}
