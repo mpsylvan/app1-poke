@@ -37,18 +37,16 @@ let pokemonList = [
   element of the poke name and p element of the height info. 
 */
 for (let i = 0; i < pokemonList.length; i++) {
+  document.write(`<hr>`);
   if (pokemonList[i].height > 1.5) {
-    document.write(`<hr>`);
     document.write(
       `<h3>${pokemonList[i].name}</h3> <p>(height: <span>${pokemonList[i].height}</span>) -- wow that's tall.</p>`
     );
   } else if (pokemonList[i].height < 0.5) {
-    document.write(`<hr>`);
     document.write(
       `<h3>${pokemonList[i].name}</h3> <p>(height: <span>${pokemonList[i].height}</span>) -- wow that's short.<p>`
     );
   } else {
-    document.write(`<hr>`);
     document.write(
       `<h3>${pokemonList[i].name}</h3> <p>(height:<span>${pokemonList[i].height}</span>)</p>`
     );
