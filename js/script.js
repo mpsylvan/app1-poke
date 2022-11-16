@@ -31,24 +31,42 @@ let pokemonList = [
     doubleDamage: ["Ice", "Fire", "Flying", "Psychic", "Ground"],
   },
 ];
-/*
-  for loop that goes over every pokemon object in the pokemonList, checks it's height property against a 1.5 threshold using an if statement, and displays special info 
-  if the height threshold is met, or generic info if threshold is not met. It makes an h3
-  element of the poke name and p element of the height info. 
-*/
-for (let i = 0; i < pokemonList.length; i++) {
+
+pokemonList.forEach((pokemon) => {
   document.write(`<hr>`);
-  if (pokemonList[i].height > 1.5) {
+  if (pokemon.height > 1.5) {
     document.write(
-      `<h3>${pokemonList[i].name}</h3> <p>(height: <span>${pokemonList[i].height}</span>) -- wow that's tall.</p>`
+      `<h3>${pokemon.name}</h3> <p>(height: <span>${pokemon.height}</span>) -- wow that's tall.</p>`
     );
-  } else if (pokemonList[i].height < 0.5) {
+  } else if (pokemon.height < 0.5) {
     document.write(
-      `<h3>${pokemonList[i].name}</h3> <p>(height: <span>${pokemonList[i].height}</span>) -- wow that's short.<p>`
+      `<h3>${pokemon.name}</h3> <p>(height: <span>${pokemon.height}</span>) -- wow that's short.<p>`
     );
   } else {
     document.write(
-      `<h3>${pokemonList[i].name}</h3> <p>(height:<span>${pokemonList[i].height}</span>)</p>`
+      `<h3>${pokemon.name}</h3> <p>(height:<span>${pokemon.height}</span>)</p>`
     );
   }
-}
+});
+
+// Same Output achieved below  by declaring displayPokemon externally and then
+// passing it as the parameter for pokemonList.forEach();
+
+// function displayPokemon(pokemon) {
+//   document.write(`<hr>`);
+//   if (pokemon.height > 1.5) {
+//     document.write(
+//       `<h3>${pokemon.name}</h3> <p>(height: <span>${pokemon.height}</span>) -- wow that's tall.</p>`
+//     );
+//   } else if (pokemon.height < 0.5) {
+//     document.write(
+//       `<h3>${pokemon.name}</h3> <p>(height: <span>${pokemon.height}</span>) -- wow that's short.<p>`
+//     );
+//   } else {
+//     document.write(
+//       `<h3>${pokemon.name}</h3> <p>(height:<span>${pokemon.height}</span>)</p>`
+//     );
+//   }
+// }
+
+// pokemonList.forEach(displayPokemon);
