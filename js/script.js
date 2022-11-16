@@ -96,7 +96,7 @@ pokemonRepo.add({
   doubleDamage: ["Water", "Psychic"],
 });
 
-//the IIFE accesses the pokemonList through getAllPokemon and then it calls forEach on the list.
+// pokemonRepo the pokemonList through getAllPokemon and then it calls forEach on the list.
 // In the call back function it writes information about each object to the document,
 // the information displayed is different depending on it's .height property.
 pokemonRepo.getAllPokemon().forEach((pokemon) => {
