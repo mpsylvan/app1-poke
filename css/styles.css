@@ -1,7 +1,7 @@
 :root {
   --primary-color: #fff;
   --bg-color: #2b2b2b;
-  --span: #ff5217;
+  --button: #ff5217;
 }
 
 body {
@@ -11,7 +11,25 @@ body {
   font-size: 16px;
   font-family: sans-serif;
 }
+li {
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
 
-span {
-  color: var(--span);
+.poke-btn {
+  width: 100px;
+  margin: 4px;
+  color: var(--primary-color);
+  background-color: var(--button);
+  border-radius: 3px;
+  border: none;
+  transition: 0.1s transform;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.poke-btn:hover,
+.poke-btn:focus {
+  background-color: #000;
 }
