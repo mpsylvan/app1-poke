@@ -33,7 +33,6 @@ let pokemonRepo = (function () {
       doubleDamage: ["Ice", "Fire", "Flying", "Psychic", "Ground"],
     },
   ];
-  // sample string used to check the format of an objects keys when it tries to be added.
   let sampleString = Object.keys({
     name: "",
     height: "",
