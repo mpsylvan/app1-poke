@@ -2,10 +2,12 @@ let pokemonRepo = (function () {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
+  // function used to populate bootstrap modal component
+  // created in html document. Get's called when a pokemon button
+  // is clicked with that particular pokemon passed in as the data object.
   function showModal(item) {
     let modalBody = $(".modal-body");
     let modalTitle = $(".modal-title");
-    let modalHeader = $(".modal-header");
 
     modalTitle.empty();
     modalBody.empty();
@@ -14,17 +16,20 @@ let pokemonRepo = (function () {
     // creating front image in modal content.
     let imageElementFront = $(`<img class="modal-img">`);
     imageElementFront.attr("src", item.frontImageUrl);
+    imageElementFront.attr("alt", `cartoon image of ${item.name} pokemon`);
     //creating reverse image in modal content.
     let imageElementBack = $(`<img class="modal-img">`);
     imageElementBack.attr("src", item.backImageUrl);
-    // creating a height/weight/moves datapoint for modal content.
+    imageElementBack.attr("alt", `cartoon image of ${item.name} pokemon`);
+    // creating height/weight/moves datapoint for modal content.
     let heightElement = $(`<p> height: ${item.height}</p>`);
     let weightELement = $(`<p> weight: ${item.weight}</p>`);
     let abilitiesElement = $(`<p>abilities:  </p>`);
+    // loops over the abilities array and appends n entries to the element.
     item.abilities.forEach((e) => {
       abilitiesElement.append(`/${e.ability.name}/ `);
     });
-
+    // appends all of the populated elements to their parent containers (modal-header and modal-body);
     modalTitle.append(nameElement);
     modalBody.append(imageElementFront);
     modalBody.append(imageElementBack);
@@ -33,6 +38,8 @@ let pokemonRepo = (function () {
     modalBody.append(abilitiesElement);
   }
 
+  // fetches json array of pokemon objects form pokeAPI, chains promises for accessing API, receiving the json and parsing it.
+  // for each object in the array it constructs a pokemon object built with a name property and a url to an individual pokemon details page.
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -83,7 +90,8 @@ let pokemonRepo = (function () {
       return pokemonList;
     }
   }
-
+  // function that calls asynchronous loadDetails to access the specfic pokemon page, and then resolves  by logging the pokemon
+  // and displaying the modal with the pokemon data needed to fill the modal accessible.
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       console.log(pokemon);
@@ -91,17 +99,20 @@ let pokemonRepo = (function () {
     });
   }
 
+  // creates an html list item for each pokemon that is in the pokemon array using jquery and bootstrap syntax,
+  //adds each element to the parent bootstrap ul, and attaches a click event that calls showDetails which includes
+  // a display of clicked pokemon to console, and populates an info modal.
   function addListItem(pokemon) {
     // let ul = document.querySelector(".poke-list");
-    let query_ul = $(".poke-list");
-    let j_li_item = $(`<li class="list-group-item"</li>`);
-    let j_button = $(
-      `<button type ="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#pokeModal">${pokemon.name}</button>`
+    let ul = $(".poke-list");
+    let li_item = $(`<li class="list-group-item"</li>`);
+    let button = $(
+      `<button type ="button" role=button class="btn-sm btn-primary" data-toggle="modal" data-target="#pokeModal">${pokemon.name}</button>`
     );
-    j_button.addClass("poke-btn");
-    j_li_item.append(j_button);
-    query_ul.append(j_li_item);
-    j_button.on("click", () => {
+    button.addClass("poke-btn");
+    li_item.append(button);
+    ul.append(li_item);
+    button.on("click", () => {
       showDetails(pokemon);
     });
   }
