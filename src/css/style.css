@@ -1,0 +1,119 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 2 versions
+*/
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.navbar {
+  background: #fff;
+}
+
+h3 {
+  padding-bottom: 25px;
+}
+
+body {
+  background-color: #4f4e4e;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: sans-serif;
+}
+li.list-group-item {
+  list-style: none;
+  text-align: center;
+}
+.logo-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.load-message {
+  margin-left: 20px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.output {
+  margin-top: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+ul.poke-list {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 0;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.poke-btn {
+  width: 100px;
+  margin: 4px;
+  color: rgb(255, 255, 255);
+  background-color: #ff5217;
+  border-radius: 3px;
+  border: none;
+  -webkit-transition: 0.1s -webkit-transform;
+  transition: 0.1s -webkit-transform;
+  transition: 0.1s transform;
+  transition: 0.1s transform, 0.1s -webkit-transform;
+  -webkit-box-shadow: 1px 1px 1px 1px black;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.poke-btn:hover,
+.poke-btn:focus {
+  background-color: #000;
+  cursor: pointer;
+}
+
+.modal-title,
+.modal-body,
+span {
+  color: #fff;
+}
+.modal-content {
+  background-color: #000;
+}
+
+.list-group-item {
+  background: #5f5e5e;
+}
+
+@media (max-width: 600px) {
+  ul.poke-list {
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
