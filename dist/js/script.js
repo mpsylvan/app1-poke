@@ -1,6 +1,22 @@
 let pokemonRepo = (function () {
-  let t = [];
-  function e(t) {
+  let t = [],
+    e = $("#search-pokemon"),
+    n = $(".search-button"),
+    o = $(".reset-button");
+  function a() {
+    let n = e.val().toLowerCase();
+    if (n.length < 1) {
+      alert("no text entered");
+      return;
+    }
+    let o = t.filter((t) => t.name.includes(n));
+    $(".poke-list").empty().addClass("search"),
+      o.forEach((t) => {
+        r(t);
+      }),
+      $("label").empty().append(`${o.length} results.`);
+  }
+  function i(t) {
     let e = $(".modal-body"),
       n = $(".modal-title");
     n.empty(), e.empty();
@@ -13,18 +29,18 @@ let pokemonRepo = (function () {
       i.attr("alt", `cartoon image of ${t.name} pokemon`);
     let l = $(`<p> height: ${t.height}</p>`),
       p = $(`<p> weight: ${t.weight}</p>`),
-      s = $("<p>abilities:  </p>");
+      r = $("<p>abilities:  </p>");
     t.abilities.forEach((t) => {
-      s.append(`/${t.ability.name}/ `);
+      r.append(`${t.ability.name} `);
     }),
       n.append(o),
       e.append(a),
       e.append(i),
       e.append(l),
       e.append(p),
-      e.append(s);
+      e.append(r);
   }
-  function n(t) {
+  function l(t) {
     return fetch(t.detailsUrl)
       .then(function (t) {
         return t.json();
@@ -42,48 +58,60 @@ let pokemonRepo = (function () {
         console.log(t);
       });
   }
-  function o(e) {
+  function p(e) {
     t.push(e);
   }
-  return {
-    add: o,
-    getAll: function e() {
-      return t.length < 1 ? "List is empty" : t;
-    },
-    addListItem: function t(o) {
-      let a = $(".poke-list"),
-        i = $('<li class="list-group-item"</li>'),
-        l = $(
-          `<button type ="button" role=button class="btn-sm btn-primary" data-toggle="modal" data-target="#pokeModal">${o.name}</button>`
-        );
-      l.addClass("poke-btn"),
-        i.append(l),
-        a.append(i),
-        l.on("click", () => {
-          !(function t(o) {
-            n(o).then(function () {
-              console.log(o), e(o);
-            });
-          })(o);
-        });
-    },
-    loadList: function t() {
-      return fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
-        .then(function (t) {
-          return t.json();
-        })
-        .then(function (t) {
-          t.results.forEach(function (t) {
-            o({ name: t.name, detailsUrl: t.url });
+  function r(t) {
+    let e = $(".poke-list"),
+      n = $('<li class="list-group-item"</li>'),
+      o = $(
+        `<button type ="button" role=button class="btn-sm btn-primary" data-toggle="modal" data-target="#pokeModal">${t.name}</button>`
+      );
+    o.addClass("poke-btn"),
+      n.append(o),
+      e.append(n),
+      o.on("click", () => {
+        !(function t(e) {
+          l(e).then(function () {
+            console.log(e), i(e);
           });
-        })
-        .catch(function (t) {
-          console.log(t);
-        });
-    },
-    loadDetails: n,
-    showModal: e,
-  };
+        })(t);
+      });
+  }
+  return (
+    n.on("click", a),
+    window.addEventListener("keydown", (t) => {
+      "Enter" === t.key && e.val().length > 0 && a();
+    }),
+    o.on("click", () => {
+      t.forEach((t) => {
+        r(t), $("label").empty().append("Search For Pokemon");
+      });
+    }),
+    {
+      add: p,
+      getAll: function e() {
+        return t.length < 1 ? "List is empty" : t;
+      },
+      addListItem: r,
+      loadList: function t() {
+        return fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
+          .then(function (t) {
+            return t.json();
+          })
+          .then(function (t) {
+            t.results.forEach(function (t) {
+              p({ name: t.name, detailsUrl: t.url });
+            });
+          })
+          .catch(function (t) {
+            console.log(t);
+          });
+      },
+      loadDetails: l,
+      showModal: i,
+    }
+  );
 })();
 pokemonRepo.loadList().then(function () {
   pokemonRepo.getAll().forEach(function (t) {

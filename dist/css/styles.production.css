@@ -13,8 +13,8 @@
   background: #fff;
 }
 
-h3 {
-  padding-bottom: 25px;
+h3.pokedex-title {
+  padding-bottom: 20px;
 }
 
 body {
@@ -43,11 +43,6 @@ li.list-group-item {
   flex-direction: column;
 }
 
-.load-message {
-  margin-left: 20px;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
 .output {
   margin-top: 120px;
   display: -webkit-box;
@@ -109,6 +104,35 @@ span {
 
 .list-group-item {
   background: #5f5e5e;
+}
+
+div.search-pokemon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+div.search-pokemon > button {
+  width: 100%;
+  margin: 3px;
+  border-radius: 3px;
+  color: #fff;
+  border: none;
+  box-shadow: 1px 1px 1px 1px #000;
+  transition: 0.4s background-color;
+}
+
+.search-button {
+  background: #444;
+}
+.reset-button {
+  background: #222;
+}
+
+div.search-pokemon > button:hover {
+  background: #aaa;
 }
 
 @media (max-width: 600px) {
