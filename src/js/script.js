@@ -2,6 +2,41 @@ let pokemonRepo = (function () {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
+  let searchField = $("#search-pokemon");
+  let searchBtn = $(".search-button");
+  let resetBtn = $(".reset-button");
+
+  function searchPokemon() {
+    let text = searchField.val().toLowerCase();
+    if (text.length < 1) {
+      alert("no text entered");
+      return;
+    }
+    let filterArray = pokemonList.filter((pokemon) =>
+      pokemon.name.includes(text)
+    );
+
+    $(".poke-list").empty().addClass("search");
+    // $(".poke-list").addClass('search');
+    filterArray.forEach((pokemon) => {
+      addListItem(pokemon);
+    });
+    $("label").empty().append(`${filterArray.length} results.`);
+  }
+  searchBtn.on("click", searchPokemon);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && searchField.val().length > 0) {
+      searchPokemon();
+    }
+  });
+  resetBtn.on("click", () => {
+    pokemonList.forEach((pokemon) => {
+      addListItem(pokemon);
+      $("label").empty().append("Search For Pokemon");
+    });
+  });
+
   // function used to populate bootstrap modal component
   // created in html document. Get's called when a pokemon button
   // is clicked with that particular pokemon passed in as the data object.
@@ -26,7 +61,7 @@ let pokemonRepo = (function () {
     let abilitiesElement = $(`<p>abilities:  </p>`);
     // loops over the abilities array and appends n entries to the element.
     item.abilities.forEach((e) => {
-      abilitiesElement.append(`/${e.ability.name}/ `);
+      abilitiesElement.append(`${e.ability.name} `);
     });
     // appends all of the populated elements to their parent containers (modal-header and modal-body);
     modalTitle.append(nameElement);

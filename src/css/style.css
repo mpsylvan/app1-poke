@@ -111,6 +111,10 @@ span {
   background: #5f5e5e;
 }
 
+ul.poke-list.search {
+  grid-template-columns: 1fr;
+}
+
 @media (max-width: 600px) {
   ul.poke-list {
     -ms-grid-columns: 1fr 1fr;
