@@ -4,4 +4,4 @@
 
 -Each indivdidual button when clicked makes another request to that specific pokemon's details page via Pokedex API.
 
--The json is parsed and used to display a modal that is built with bootstrap components.
+-The json is parsed and used to display a modal that is built with #Bootstrap components.
