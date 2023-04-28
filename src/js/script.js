@@ -2,6 +2,7 @@ let pokemonRepo = (function () {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
+  // store HTML elements from DOM as variables.
   let searchField = $("#search-pokemon");
   let searchBtn = $(".search-button");
   let resetBtn = $(".reset-button");
@@ -93,9 +94,11 @@ let pokemonRepo = (function () {
       });
   }
 
-  // function that gets added to every pokemon in .poke-list,
-  // it takes the pokemon objected loaded in and acesses it's specific details url
-  // making variables from specific data points and sprite.pngs.
+  /**  function that gets added to every pokemon in .poke-list,
+   it takes the pokemon objected loaded in and acesses it's specific details url
+   making variables from specific data points and sprite.pngs. 
+*/
+
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url)
